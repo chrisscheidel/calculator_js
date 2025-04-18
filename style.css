@@ -1,11 +1,21 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 #display {
     display: flex;
+    justify-content: flex-end;
     justify-self: center;
     flex: 1 1 auto;
     height: 100px;
     width: 400px;
     border: 1px solid black;
     margin-top: 50px;
+}
+
+#output {
+    display: flex;
+    align-items: flex-end;
 }
 
 #buttons {
