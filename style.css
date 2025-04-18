@@ -1,3 +1,13 @@
+#display {
+    display: flex;
+    justify-self: center;
+    flex: 1 1 auto;
+    height: 100px;
+    width: 400px;
+    border: 1px solid black;
+    margin-top: 50px;
+}
+
 #buttons {
     display: flex;
     flex-direction: column;
