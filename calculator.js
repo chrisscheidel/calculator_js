@@ -27,7 +27,7 @@ let mapping = {
 }
 
 function operate(firstNumber, secondNumber, operator, mapping) {
-    let output = mapping[operater](firstNumber,secondNumber);
-    return output
+    let output = mapping[operator](firstNumber,secondNumber);
+    return output;
 };
 
