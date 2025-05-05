@@ -16,6 +16,9 @@ body {
 #output {
     display: flex;
     align-items: flex-end;
+
+    margin: 0 10px 20px 10px;
+    font-size: x-large;
 }
 
 #buttons {

@@ -15,10 +15,6 @@ function divide(a,b) {
     return a / b;
 };
 
-let firstNumber;
-let secondNumber;
-let operator;
-
 let mapping = {
     '+': add,
     '-': subtract,
@@ -26,10 +22,12 @@ let mapping = {
     '/': divide,
 }
 
-function operate(firstNumber, secondNumber, operator, mapping) {
+function operate(firstNumber, secondNumber, operator) {
     let output = mapping[operator](firstNumber,secondNumber);
     return output;
 };
+
+console.log(operate(1, 2 ,'+'))
 
 // Create HTML elements
 const display = document.querySelector('#display');
