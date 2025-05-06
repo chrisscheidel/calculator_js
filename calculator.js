@@ -49,3 +49,26 @@ function createButtonContainer() {
 };
 
 createButtonContainer();
+
+const col3 = document.querySelectorAll('.button3')
+const col2 = document.querySelectorAll('.button2')
+const col1 = document.querySelectorAll('.button1')
+
+function addNumsToCalc(column, start, end) {
+    let number = start;
+    for (let i = 0; i < column.length; i++) {
+        if (number >= end) {
+            column[i].textContent = number;
+            number -= 3;
+        } else
+        {
+            break;
+        }
+        
+    }
+}
+
+addNumsToCalc(col3, 9, 3);
+addNumsToCalc(col2, 8, 2);
+addNumsToCalc(col1, 7, 1);
+
