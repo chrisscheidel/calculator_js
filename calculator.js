@@ -50,25 +50,35 @@ function createButtonContainer() {
 
 createButtonContainer();
 
-const col3 = document.querySelectorAll('.button3')
-const col2 = document.querySelectorAll('.button2')
-const col1 = document.querySelectorAll('.button1')
-
-function addNumsToCalc(column, start, end) {
-    let number = start;
-    for (let i = 0; i < column.length; i++) {
-        if (number >= end) {
-            column[i].textContent = number;
-            number -= 3;
-        } else
-        {
-            break;
-        }
-        
-    }
+function addToCalc(lst) {
+    const toAdd = lst[0]
+    const rowNum = lst[1]
+    const colNum = lst[2]
+    const location = document.querySelector(`.row${rowNum} > .button${colNum}`)
+    location.textContent = String(toAdd)
 }
 
-addNumsToCalc(col3, 9, 3);
-addNumsToCalc(col2, 8, 2);
-addNumsToCalc(col1, 7, 1);
+const buttonsToAdd = [
+    // first row
+    ['/', 1, 4],
+    [9, 1, 3],
+    [8, 1, 2],
+    [7, 1, 1],
+    // second row
+    ['*', 2, 4],
+    [6, 2, 3],
+    [5, 2, 2],
+    [4, 2, 1],
+    // third row
+    ['-', 3, 4],
+    [3, 3, 3],
+    [2, 3, 2],
+    [1, 3, 1],
+    // fourth row
+    ['+', 4, 4],
+    ['=', 4, 3],
+    [0, 4, 2],
+    ['.', 4, 1],
+]
 
+buttonsToAdd.map(addToCalc)
