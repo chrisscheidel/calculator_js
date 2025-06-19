@@ -94,3 +94,13 @@ const buttonsToAdd = [
 ]
 
 buttonsToAdd.map(addToCalc)
+
+// add placeholder and delete buttons
+const valuesToAdd = ['cSv', 'AC', 'C'];
+for (let i = 1; i <= 3; i++) {
+    let buttonLoc = document.querySelector(`.deleteButton${i}`);
+    buttonLoc.textContent = valuesToAdd[i - 1];
+    buttonLoc.style.display = 'flex';
+    buttonLoc.style.justifyContent = 'center';
+    buttonLoc.style.alignItems = 'center';
+}
