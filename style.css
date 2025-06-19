@@ -11,6 +11,8 @@ body {
     width: 400px;
     border: 1px solid black;
     margin-top: 50px;
+    background-color: #B8B2B6;
+    color: black;
 }
 
 #output {
@@ -30,11 +32,16 @@ body {
 }
 .deleteButton1 {
    flex: 2;
+   background-color: black;
+   color: #A80925;
+   font-size: 50px;
 }
 
 .deleteButton2, .deleteButton3{
     flex: 1;
-    border-left: 1px solid black
+    border-left: 1px solid black;
+    background-color: #A80925;
+    color: white;
 }
 
 #buttons {

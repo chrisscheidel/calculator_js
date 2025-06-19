@@ -55,6 +55,8 @@ function createButtonContainer() {
             const button = document.createElement('div');
             button.classList.add(`button${n}`);
             button.style.border = '1px solid black';
+            button.style.background = 'gray';
+            button.style.color = 'white';
             row.appendChild(button);
         };
     };
