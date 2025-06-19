@@ -31,7 +31,19 @@ console.log(operate(1, 2 ,'+'))
 
 // Create HTML elements
 const display = document.querySelector('#display');
+const deleteButtons = document.querySelector('#deleteButtons');
 const buttons = document.querySelector('#buttons');
+
+function createDeleteButtons() {
+    for (let i=1; i<=3; i++) {
+        const deleteButton = document.createElement('div');
+        deleteButton.classList.add(`deleteButton${i}`);
+        
+        deleteButtons.appendChild(deleteButton);
+    }
+}
+
+createDeleteButtons();
 
 function createButtonContainer() {
     for (let i=1 ; i<=4; i++) {
