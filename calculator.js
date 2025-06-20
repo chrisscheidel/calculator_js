@@ -106,3 +106,19 @@ for (let i = 1; i <= 3; i++) {
     buttonLoc.style.justifyContent = 'center';
     buttonLoc.style.alignItems = 'center';
 }
+
+let numberInputs = [];
+
+const parents = document.querySelectorAll('.row1,.row2,.row3,.row4');
+parents.forEach(parent => {
+    const children = parent.querySelectorAll('*');
+
+    children.forEach(button => {
+        button.addEventListener('click', () => {
+            display.textContent = button.textContent;
+            display.style.display = 'flex';
+            display.style.justifyContent = 'flex-end';
+            display.style.alignItems = 'flex-end';
+        })
+    })
+})
