@@ -12,7 +12,11 @@ function multiply(a,b) {
 };
 
 function divide(a,b) {
-    return a / b;
+    if (b = 0) {
+        return "You tried to divide by 0 >:( - click AC to reset"
+    } else {
+        return a / b;
+    }
 };
 
 let mapping = {
