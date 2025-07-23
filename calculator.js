@@ -23,7 +23,7 @@ let mapping = {
 }
 
 function operate(firstNumber, secondNumber, operator) {
-    let output = mapping[operator](firstNumber,secondNumber);
+    let output = mapping[operator](Number(firstNumber),Number(secondNumber));
     return output;
 };
 
@@ -107,7 +107,18 @@ for (let i = 1; i <= 3; i++) {
     buttonLoc.style.alignItems = 'center';
 }
 
-let numberInputs = [];
+let eqInputs = {
+"input1" : "",
+"input2" : "",
+"operator" : "",
+}
+
+function resetEqInputs() {
+    
+}
+
+const notNumbers = ['+','-','/','*','=','C','AC','cSv'];
+const operatorOptions = ['+','-','/','*','='];
 
 const parents = document.querySelectorAll('.row1,.row2,.row3,.row4');
 parents.forEach(parent => {
@@ -115,10 +126,36 @@ parents.forEach(parent => {
 
     children.forEach(button => {
         button.addEventListener('click', () => {
-            display.textContent = button.textContent;
             display.style.display = 'flex';
             display.style.justifyContent = 'flex-end';
             display.style.alignItems = 'flex-end';
+        
+            if (!(notNumbers.includes(button.textContent)) && eqInputs.operator === "") {
+                eqInputs.input1 += button.textContent
+                display.textContent = eqInputs.input1;
+                console.log(`input1 is now ${eqInputs.input1}`);
+            } else if (!(notNumbers.includes(button.textContent)) && eqInputs.operator !== "") {
+                eqInputs.input2 += button.textContent;
+                display.textContent = `${eqInputs.input1} ${eqInputs.operator} ${eqInputs.input2}`;
+                console.log(`input2 is now ${eqInputs.input2}`)
+            } else if (eqInputs.input1 !== "" && eqInputs.input2 === "" && eqInputs.operator === "" && button.textContent !== '=') {
+                eqInputs.operator = button.textContent;
+                display.textContent = `${eqInputs.input1} ${eqInputs.operator}`;
+                console.log(`operator is ${eqInputs.operator}`)
+            } else if (eqInputs.input1 !== "" && eqInputs.input2 !== "" && eqInputs.operator !== "" && button.textContent === '=') {
+                eqInputs.input1 = operate(eqInputs.input1, eqInputs.input2, eqInputs.operator);
+                display.textContent = eqInputs.input1;
+                eqInputs.input2 = "";
+                eqInputs.operator = "";
+                console.log("operated with equals sign")
+            } else if (eqInputs.input1 !== "" && eqInputs.input2 !== "" && eqInputs.operator !== "" && operatorOptions.includes(button.textContent)) {
+                eqInputs.input1 = operate(eqInputs.input1, eqInputs.input2, eqInputs.operator);
+                display.textContent = eqInputs.input1;
+                eqInputs.input2 = "";
+                eqInputs.operator = button.textContent;
+                console.log("operated with other operator")
+            }
+
+            })
         })
     })
-})
