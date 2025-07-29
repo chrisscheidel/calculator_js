@@ -133,13 +133,21 @@ parents.forEach(parent => {
             display.style.alignItems = 'flex-end';
         
             if (!(notNumbers.includes(button.textContent)) && eqInputs.operator === "") {
-                eqInputs.input1 += button.textContent
-                display.textContent = eqInputs.input1;
-                console.log(`input1 is now ${eqInputs.input1}`);
+                if (eqInputs.input1.includes(".") && button.textContent === ".") {
+                    eqInputs.input1;
+                } else {
+                    eqInputs.input1 += button.textContent;
+                    display.textContent = eqInputs.input1;
+                    console.log(`input1 is now ${eqInputs.input1}`);
+                }
             } else if (!(notNumbers.includes(button.textContent)) && eqInputs.operator !== "") {
-                eqInputs.input2 += button.textContent;
-                display.textContent = `${eqInputs.input1} ${eqInputs.operator} ${eqInputs.input2}`;
-                console.log(`input2 is now ${eqInputs.input2}`)
+                if (eqInputs.input2.includes(".") && button.textContent === ".") {
+                    eqInputs.input2;
+                } else {
+                    eqInputs.input2 += button.textContent;
+                    display.textContent = `${eqInputs.input1} ${eqInputs.operator} ${eqInputs.input2}`;
+                    console.log(`input2 is now ${eqInputs.input2}`)
+                }
             } else if (eqInputs.input1 !== "" && eqInputs.input2 === "" && eqInputs.operator === "" && button.textContent !== '=') {
                 eqInputs.operator = button.textContent;
                 display.textContent = `${eqInputs.input1} ${eqInputs.operator}`;
