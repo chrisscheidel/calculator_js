@@ -12,7 +12,7 @@ function multiply(a,b) {
 };
 
 function divide(a,b) {
-    if (b = 0) {
+    if (b === 0) {
         return "You tried to divide by 0 >:( - click AC to reset"
     } else {
         return a / b;
@@ -117,10 +117,20 @@ let eqInputs = {
 "operator" : "",
 }
 
-function resetEqInputs() {
-    
+function resetObject(obj,k) {
+    if (k == "") {
+        for (let key in obj) {
+            obj[key] = ""
+        }
+    } else {
+        obj[k] = ""
+    }
+    return obj;
 }
 
+
+
+let currentState = "";
 const notNumbers = ['+','-','/','*','=','C','AC','cSv'];
 const operatorOptions = ['+','-','/','*','='];
 
@@ -138,28 +148,47 @@ parents.forEach(parent => {
                 eqInputs.input1 += button.textContent
                 display.textContent = eqInputs.input1;
                 console.log(`input1 is now ${eqInputs.input1}`);
+                // currentState = "input1";
             } else if (!(notNumbers.includes(button.textContent)) && eqInputs.operator !== "") {
                 eqInputs.input2 += button.textContent;
                 display.textContent = `${eqInputs.input1} ${eqInputs.operator} ${eqInputs.input2}`;
                 console.log(`input2 is now ${eqInputs.input2}`)
+                // currentState = "input2";
             } else if (eqInputs.input1 !== "" && eqInputs.input2 === "" && eqInputs.operator === "" && button.textContent !== '=') {
                 eqInputs.operator = button.textContent;
                 display.textContent = `${eqInputs.input1} ${eqInputs.operator}`;
                 console.log(`operator is ${eqInputs.operator}`)
+                // currentState = "operator";
             } else if (eqInputs.input1 !== "" && eqInputs.input2 !== "" && eqInputs.operator !== "" && button.textContent === '=') {
                 eqInputs.input1 = operate(eqInputs.input1, eqInputs.input2, eqInputs.operator);
                 display.textContent = eqInputs.input1;
                 eqInputs.input2 = "";
                 eqInputs.operator = "";
                 console.log("operated with equals sign")
+                // currentState = "input1"
             } else if (eqInputs.input1 !== "" && eqInputs.input2 !== "" && eqInputs.operator !== "" && operatorOptions.includes(button.textContent)) {
                 eqInputs.input1 = operate(eqInputs.input1, eqInputs.input2, eqInputs.operator);
                 display.textContent = eqInputs.input1;
                 eqInputs.input2 = "";
                 eqInputs.operator = button.textContent;
                 console.log("operated with other operator")
+                // currentState = "input1";
             }
 
             })
         })
     })
+
+let clearButtons = deleteButtons.querySelectorAll('*')
+clearButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            display.style.display = 'flex';
+            display.style.justifyContent = 'flex-end';
+            display.style.alignItems = 'flex-end';
+
+            if (button.textContent === 'cSv') {
+                display.textContent = "This calculator is a product of cSv. Press AC to clear."
+            } 
+        })
+    }
+)
