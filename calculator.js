@@ -37,6 +37,7 @@ console.log(operate(1, 2 ,'+'))
 const display = document.querySelector('#display');
 const deleteButtons = document.querySelector('#deleteButtons');
 const buttons = document.querySelector('#buttons');
+const displayOutput = document.querySelector('#output');
 
 function createDeleteButtons() {
     for (let i=1; i<=3; i++) {
@@ -115,6 +116,10 @@ let eqInputs = {
 "input1" : "",
 "input2" : "",
 "operator" : "",
+};
+
+function updateDisplay() {
+    display.style.fontSize = "24px";
 }
 
 
@@ -137,6 +142,7 @@ parents.forEach(parent => {
                     eqInputs.input1;
                 } else {
                     eqInputs.input1 += button.textContent;
+                    updateDisplay();
                     display.textContent = eqInputs.input1;
                     console.log(`input1 is now ${eqInputs.input1}`);
                 }
@@ -145,15 +151,18 @@ parents.forEach(parent => {
                     eqInputs.input2;
                 } else {
                     eqInputs.input2 += button.textContent;
+                    updateDisplay();
                     display.textContent = `${eqInputs.input1} ${eqInputs.operator} ${eqInputs.input2}`;
                     console.log(`input2 is now ${eqInputs.input2}`)
                 }
             } else if (eqInputs.input1 !== "" && eqInputs.input2 === "" && eqInputs.operator === "" && button.textContent !== '=') {
                 eqInputs.operator = button.textContent;
+                updateDisplay();
                 display.textContent = `${eqInputs.input1} ${eqInputs.operator}`;
                 console.log(`operator is ${eqInputs.operator}`)
             } else if (eqInputs.input1 !== "" && eqInputs.input2 !== "" && eqInputs.operator !== "" && button.textContent === '=') {
                 eqInputs.input1 = operate(eqInputs.input1, eqInputs.input2, eqInputs.operator);
+                updateDisplay();
                 display.textContent = eqInputs.input1;
                 eqInputs.input2 = "";
                 eqInputs.operator = "";
@@ -163,6 +172,7 @@ parents.forEach(parent => {
                 eqInputs.input2 = "";
                 eqInputs.operator = button.textContent;
                 console.log("operated with other operator")
+                updateDisplay();
                 display.textContent = `${eqInputs.input1} ${eqInputs.operator}`;
             }
 
@@ -178,23 +188,29 @@ clearButtons.forEach(button => {
             display.style.alignItems = 'flex-end';
 
             if (button.textContent === 'cSv') {
+                updateDisplay();
                 display.textContent = "This calculator is a product of cSv. Press AC to clear."
             } else if (button.textContent === "AC"){
                 eqInputs.input1 = "";
                 eqInputs.operator = "";
                 eqInputs.input2 = "";
+                updateDisplay();
                 display.textContent = "";
             } else if (button.textContent === "C") {
                 if (eqInputs.input1 === "") {
+                    updateDisplay();
                     display.textContent = "";
                 } else if (eqInputs.operator === "") {
                     eqInputs.input1 = "";
+                    updateDisplay();
                     display.textContent = "";
                 } else if (eqInputs.input2 === "") {
                     eqInputs.operator = "";
+                    updateDisplay();
                     display.textContent = eqInputs.input1;
                 } else {
                     eqInputs.input2 = "";
+                    updateDisplay();
                     display.textContent = `${eqInputs.input1} ${eqInputs.operator}`;
                 }
             }
